@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f1ea">
+<title>Loopora | Crochet Companion</title>
+<style>
+:root {
+  --cream:#F5F1EA;
+  --sage:#DCE7DE;
+  --green:#547460;
+  --dark:#303832;
+  --taupe:#E6D9D0;
+  --white:#fff;
+  --muted:#858B83;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--cream);
+  color:var(--dark);
+  font-family:Arial,sans-serif;
+}
+header {
+  padding:25px 20px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo {font-size:25px;font-weight:800;letter-spacing:2px}
+.logo span {color:var(--green)}
+.tagline {font-size:12px;color:var(--muted);margin-top:4px}
+.avatar {
+  background:var(--sage);
+  color:var(--green);
+  border-radius:50%;
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  font-size:20px;
+}
+main {padding:10px 20px 100px;max-width:650px;margin:auto}
+h1 {font-size:25px;margin:15px 0 5px}
+.sub {color:var(--muted);font-size:14px}
+.hero {
+  background:var(--sage);
+  border-radius:20px;
+  padding:23px;
+  margin:22px 0;
+}
+.hero small {color:var(--green);font-weight:bold}
+.hero h2 {font-size:22px;margin:10px 0}
+.hero p {font-size:13px;color:#536557;line-height:1.6}
+.section-title {
+  display:flex;justify-content:space-between;
+  align-items:center;margin:25px 0 13px;
+}
+.section-title h3 {margin:0;font-size:17px}
+.card {
+  background:var(--white);
+  border-radius:17px;
+  padding:17px;
+  margin-bottom:12px;
+}
+.tools {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.tool {
+  background:white;border-radius:17px;
+  padding:18px 14px;
+  min-height:115px;
+  border:1px solid #eee9e1;
+  cursor:pointer;
+  text-align:left;
+  color:var(--dark);
+}
+.tool .emoji {font-size:25px}
+.tool strong {display:block;margin-top:12px}
+.tool small {color:var(--muted)}
+button {font-family:inherit}
+nav {
+  position:fixed;bottom:0;left:0;right:0;
+  background:white;
+  border-top:1px solid #eee;
+  display:flex;justify-content:space-around;
+  padding:10px 3px calc(10px + env(safe-area-inset-bottom));
+  z-index:5;
+}
+nav button {
+  border:0;background:none;color:var(--muted);
+  font-size:11px;padding:5px;
+  display:flex;flex-direction:column;gap:5px;
+  align-items:center;
+}
+nav button span {font-size:20px}
+nav button.active {color:var(--green);font-weight:bold}
+.page {display:none}
+.page.active {display:block}
+.primary {
+  background:var(--green);color:white;
+  border:0;border-radius:12px;
+  padding:13px 18px;font-weight:bold;
+  cursor:pointer;
+}
+.secondary {
+  background:var(--sage);color:var(--dark);
+  border:0;border-radius:10px;padding:10px;
+  cursor:pointer;
+}
+input,select {
+  width:100%;padding:13px;
+  border:1px solid #ddd8d0;
+  border-radius:10px;background:white;
+  font-size:15px;margin:8px 0 14px;
+}
+label {font-size:13px;font-weight:bold}
+.counter {
+  font-size:76px;text-align:center;
+  font-weight:bold;margin:20px 0;
+}
+.counter-controls {
+  display:flex;justify-content:center;
+  align-items:center;gap:20px;
+}
+.counter-controls button {
+  width:65px;height:65px;border:0;
+  border-radius:50%;font-size:28px;
+  background:var(--sage);color:var(--green);
+}
+.project {
+  display:flex;justify-content:space-between;
+  align-items:center;gap:10px;
+}
+.project p {font-size:12px;color:var(--muted)}
+.empty {text-align:center;padding:25px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">LOOP<span>ORA</span> 🧶</div>
+    <div class="tagline">Your crochet companion.</div>
+  </div>
+  <div class="avatar">🧵</div>
+</header>
+
+<main>
+  <section class="page active" id="home">
+    <h1>Hello, Maker! 👋</h1>
+    <div class="sub">Ready to create something beautiful?</div>
+
+    <div class="hero">
+      <small>WELCOME TO LOOPORA</small>
+      <h2>Every stitch tells a story.</h2>
+      <p>Organize your projects, keep track of your stitches and bring your creative ideas to life.</p>
+    </div>
+
+    <div class="section-title"><h3>Your workspace</h3></div>
+    <div class="tools">
+      <button class="tool" onclick="showPage('projects')">
+        <div class="emoji">🧶</div>
+        <strong>My Projects</strong>
+        <small>Manage your creations</small>
+      </button>
+      <button class="tool" onclick="showPage('counter')">
+        <div class="emoji">🔢</div>
+        <strong>Row Counter</strong>
+        <small>Track every row</small>
+      </button>
+      <button class="tool" onclick="comingSoon()">
+        <div class="emoji">🎨</div>
+        <strong>Pattern Studio</strong>
+        <small>Create patterns</small>
+      </button>
+      <button class="tool" onclick="comingSoon()">
+        <div class="emoji">🧵</div>
+        <strong>Yarn Stash</strong>
+        <small>Organize your yarn</small>
+      </button>
+      <button class="tool" onclick="comingSoon()">
+        <div class="emoji">💰</div>
+        <strong>Pricing Tool</strong>
+        <small>Calculate your costs</small>
+      </button>
+      <button class="tool" onclick="comingSoon()">
+        <div class="emoji">📖</div>
+        <strong>My Patterns</strong>
+        <small>Save your patterns</small>
+      </button>
+    </div>
+
+    <div class="section-title"><h3>Recent projects</h3></div>
+    <div id="homeProjects"></div>
+  </section>
+
+  <section class="page" id="projects">
+    <h1>My Projects 🧶</h1>
+    <p class="sub">All your creative work in one place.</p>
+    <div class="card">
+      <label>Project name</label>
+      <input id="projectName" placeholder="e.g. Pink Crochet Bag">
+      <label>Project type</label>
+      <select id="projectType">
+        <option>Bag</option>
+        <option>Clothing</option>
+        <option>Amigurumi</option>
+        <option>Home Decor</option>
+        <option>Accessories</option>
+        <option>Other</option>
+      </select>
+      <button class="primary" onclick="addProject()">+ Add Project</button>
+    </div>
+    <div class="section-title"><h3>My creations</h3></div>
+    <div id="projectList"></div>
+  </section>
+
+  <section class="page" id="counter">
+    <h1>Row Counter 🔢</h1>
+    <p class="sub">Keep track of every stitch and row.</p>
+    <div class="card" style="text-align:center">
+      <div class="sub">CURRENT ROW</div>
+      <div class="counter" id="count">0</div>
+      <div class="counter-controls">
+        <button onclick="changeCount(-1)">−</button>
+        <button onclick="changeCount(1)">+</button>
+      </div>
+      <p class="sub">Tap + to count your next row.</p>
+      <button class="secondary" onclick="resetCount()">Reset counter</button>
+    </div>
+  </section>
+
+  <section class="page" id="studio">
+    <h1>Pattern Studio 🎨</h1>
+    <p class="sub">Your creative pattern workspace.</p>
+    <div class="card">
+      <div style="font-size:40px">🧩</div>
+      <h3>Coming soon</h3>
+      <p class="sub">Create colorful crochet grids and tapestry patterns.</p>
+    </div>
+  </section>
+
+  <section class="page" id="stash">
+    <h1>Yarn Stash 🧵</h1>
+    <p class="sub">Your yarn collection, organized.</p>
+    <div class="card">
+      <div style="font-size:40px">🧶</div>
+      <h3>Coming soon</h3>
+      <p class="sub">Keep track of yarn colors, weights and quantities.</p>
+    </div>
+  </section>
+</main>
+
+<nav>
+  <button class="active" data-page="home" onclick="showPage('home')"><span>⌂</span>Home</button>
+  <button data-page="projects" onclick="showPage('projects')"><span>🧶</span>Projects</button>
+  <button data-page="counter" onclick="showPage('counter')"><span>＋</span>Counter</button>
+  <button data-page="studio" onclick="showPage('studio')"><span>▦</span>Studio</button>
+  <button data-page="stash" onclick="showPage('stash')"><span>🧵</span>Yarn</button>
+</nav>
+
+<script>
+let count = Number(localStorage.getItem('looporaCount')) || 0;
+let projects = JSON.parse(localStorage.getItem('looporaProjects') || '[]');
+
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => {
+    b.classList.toggle('active', b.dataset.page === page);
+  });
+  window.scrollTo(0,0);
+  renderProjects();
+}
+
+function changeCount(amount) {
+  count = Math.max(0, count + amount);
+  localStorage.setItem('looporaCount', count);
+  document.getElementById('count').textContent = count;
+}
+
+function resetCount() {
+  if(confirm('Reset your row counter to zero?')) changeCount(-count);
+}
+
+function addProject() {
+  const input = document.getElementById('projectName');
+  const name = input.value.trim();
+  if(!name) {
+    alert('Please enter a project name.');
+    return;
+  }
+  projects.push({
+    id:Date.now(),
+    name:name,
+    type:document.getElementById('projectType').value
+  });
+  saveProjects();
+  input.value='';
+}
+
+function deleteProject(id) {
+  if(confirm('Delete this project?')) {
+    projects = projects.filter(p => p.id !== id);
+    saveProjects();
+  }
+}
+
+function saveProjects() {
+  localStorage.setItem('looporaProjects',JSON.stringify(projects));
+  renderProjects();
+}
+
+function renderProjects() {
+  const html = projects.length
+    ? projects.map(p => `
+      <div class="card project">
+        <div><strong>${escapeHTML(p.name)}</strong><p>${escapeHTML(p.type)}</p></div>
+        <button class="secondary" onclick="deleteProject(${p.id})">Delete</button>
+      </div>`).join('')
+    : '<div class="card empty">No projects yet. Add your first creation! 🧶</div>';
+  document.getElementById('projectList').innerHTML=html;
+  document.getElementById('homeProjects').innerHTML =
+    projects.length
+    ? projects.slice(-2).reverse().map(p =>
+      `<div class="card"><strong>${escapeHTML(p.name)}</strong><p class="sub">${escapeHTML(p.type)}</p></div>`
+    ).join('')
+    : '<div class="card empty">Your first project is waiting!</div>';
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+function comingSoon() {
+  alert('This Loopora feature is coming soon! 💚');
+}
+
+document.getElementById('count').textContent=count;
+renderProjects();
+</script>
+</body>
+</html>
